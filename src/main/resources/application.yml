@@ -1,0 +1,17 @@
+server:
+  port: 8087
+spring:
+  config:
+    activate:
+      on-profile: local,dev,prod
+  application:
+    name: review-service
+  # config service settings
+  cloud:
+    config:
+      name: review-service
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, refresh, busrefresh

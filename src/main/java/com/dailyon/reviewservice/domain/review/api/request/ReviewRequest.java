@@ -1,11 +1,17 @@
 package com.dailyon.reviewservice.domain.review.api.request;
 
 import com.dailyon.reviewservice.domain.review.facade.request.ReviewFacadeRequest;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class ReviewRequest {
+  @Getter
+  @AllArgsConstructor
+  @NoArgsConstructor
   public static class ReviewCreateRequest {
     @NotNull(message = "상품번호는 필수입니다.")
     private Long productId;

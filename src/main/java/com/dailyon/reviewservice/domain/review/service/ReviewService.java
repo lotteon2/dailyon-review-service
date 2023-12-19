@@ -12,5 +12,4 @@ import org.springframework.transaction.annotation.Transactional;
 public class ReviewService {
   private final ReviewAppender reviewAppender;
   private final ReviewReader reviewReader;
-
 }

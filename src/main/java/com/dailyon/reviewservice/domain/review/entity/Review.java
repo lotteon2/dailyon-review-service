@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
     indexes = {
       @Index(name = "idx_member_id", columnList = "memberId"),
       @Index(name = "idx_product_id", columnList = "productId"),
-      @Index(name = "idx_order_detail_id", columnList = "orderDetailId")
+      @Index(name = "idx_order_detail_no", columnList = "orderDetailNo", unique = true)
     })
 public class Review extends BaseEntity {
   @Id
@@ -24,7 +24,8 @@ public class Review extends BaseEntity {
 
   @NotNull private Long memberId;
   @NotNull private Long productId;
-  @NotNull private Long orderDetailId;
+
+  @NotNull private String orderDetailNo;
   @NotNull private String description;
   @NotNull private Float rating;
 
@@ -39,21 +40,19 @@ public class Review extends BaseEntity {
   private Review(
       Long memberId,
       Long productId,
-      Long orderDetailId,
+      String orderDetailNo,
       String description,
       Float rating,
       String imgUrl,
       String nickname,
-      String profileImgUrl,
-      boolean isDeleted) {
+      String profileImgUrl) {
     this.memberId = memberId;
     this.productId = productId;
-    this.orderDetailId = orderDetailId;
+    this.orderDetailNo = orderDetailNo;
     this.description = description;
     this.rating = rating;
     this.imgUrl = imgUrl;
     this.nickname = nickname;
     this.profileImgUrl = profileImgUrl;
-    this.isDeleted = isDeleted;
   }
 }

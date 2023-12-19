@@ -12,16 +12,17 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ReviewDTO {
   private String orderDetailNo;
+  private Long productId;
   private Long memberId;
   private int point;
-  private float rating;
+  private double ratingAvg;
 
-  public static ReviewDTO of(Review review, int point) {
+  public static ReviewDTO of(Review review, double ratingAvg, int point) {
     return ReviewDTO.builder()
         .orderDetailNo(review.getOrderDetailNo())
         .memberId(review.getMemberId())
         .point(point)
-        .rating(review.getRating())
+        .ratingAvg(ratingAvg)
         .build();
   }
 }

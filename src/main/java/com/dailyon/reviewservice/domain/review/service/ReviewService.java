@@ -21,4 +21,8 @@ public class ReviewService {
     Review savedReview = reviewAppender.append(review);
     return savedReview;
   }
+
+  public Double getRatingAvg(Long productId) {
+    return reviewReader.readAvg(productId);
+  }
 }

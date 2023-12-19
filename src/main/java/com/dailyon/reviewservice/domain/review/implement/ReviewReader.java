@@ -8,4 +8,8 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class ReviewReader {
   private final ReviewRepository reviewRepository;
+
+  public Double readAvg(Long productId) {
+    return reviewRepository.findRatingAvgByProductId(productId);
+  }
 }

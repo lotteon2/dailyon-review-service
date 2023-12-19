@@ -18,10 +18,7 @@ public class ReviewEventProducer {
   public void reviewCreated(ReviewDTO reviewDTO) {
     log.info("review-create -> orderDetailNo {} ", reviewDTO.getOrderDetailNo());
     try {
-      kafkaTemplate.send(
-          "create-review",
-          reviewDTO.getOrderDetailNo(),
-          objectMapper.writeValueAsString(reviewDTO));
+      kafkaTemplate.send("create-review", objectMapper.writeValueAsString(reviewDTO));
     } catch (JsonProcessingException e) {
       e.printStackTrace();
     }

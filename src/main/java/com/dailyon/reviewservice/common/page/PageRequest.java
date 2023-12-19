@@ -11,7 +11,7 @@ public class PageRequest {
   private static final int PAGE_SIZE = 8;
   private static final int PAGE = 0;
   private static final String ORDER = RECENT.getSort();
-  private static final String SORT = "asc";
+  private static final String SORT = "DESC";
 
   private Pageable pageable;
 

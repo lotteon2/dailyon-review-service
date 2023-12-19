@@ -49,7 +49,8 @@ dependencies {
     implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
     implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
 
-//    implementation group: 'it.ozimov', name: 'embedded-redis', version: '0.7.1'
+    // aws
+    implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.4.RELEASE'
 
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -59,6 +60,8 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.kafka:spring-kafka-test'
     testImplementation 'org.springframework.amqp:spring-rabbit-test'
+    // aws s3 mock
+    testImplementation 'io.findify:s3mock_2.12:0.2.4'
 }
 
 dependencyManagement {

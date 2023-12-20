@@ -1,12 +1,15 @@
 package com.dailyon.reviewservice.domain.review.api;
 
 import com.dailyon.reviewservice.ControllerTestSupport;
+import com.dailyon.reviewservice.common.page.OrderCondition;
+import com.dailyon.reviewservice.common.page.PageRequest;
 import com.dailyon.reviewservice.domain.review.api.request.ReviewRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -205,6 +208,23 @@ class ReviewApiControllerTest extends ControllerTestSupport {
         .andExpect(status().isBadRequest())
         .andExpect(jsonPath("$.message").value("잘못된 요청입니다."))
         .andExpect(jsonPath("$.validation.*").value("프로필 이미지는 필수입니다."));
+  }
+
+  @DisplayName("특정 상품의 리뷰를 조회한다.")
+  @Test
+  void getProductReviews() throws Exception {
+    // given
+    Long productId = 1L;
+    Long memberId = 1L;
+    // when // then
+    mockMvc
+        .perform(
+            get("/reviews/{productId}", productId)
+                .header("memberId", memberId)
+                .param("page", "0")
+                .param("order", "RECENT")
+                .param("sort", ""))
+        .andExpect(status().isOk());
   }
 
   private ReviewRequest.ReviewCreateRequest createRequest(

@@ -19,6 +19,7 @@ public class ReviewResponse {
 
   @Builder
   private ReviewResponse(
+      Long id,
       Long productId,
       String description,
       Float rating,
@@ -26,6 +27,7 @@ public class ReviewResponse {
       String nickname,
       String profileImgUrl,
       boolean isWrittenByMe) {
+    this.id = id;
     this.productId = productId;
     this.description = description;
     this.rating = rating;
@@ -37,6 +39,7 @@ public class ReviewResponse {
 
   public static ReviewResponse of(Review review, Long memberId) {
     return ReviewResponse.builder()
+        .id(review.getId())
         .productId(review.getProductId())
         .description(review.getDescription())
         .rating(review.getRating())

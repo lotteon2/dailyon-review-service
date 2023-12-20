@@ -9,14 +9,14 @@ import static org.springframework.data.domain.Sort.Direction.DESC;
 
 @Getter
 public class PageRequest {
-  private static final int PAGE_SIZE = 8;
-  private static final int PAGE = 0;
+  private static final Integer PAGE_SIZE = 8;
+  private static final Integer PAGE = 0;
   private static final String ORDER = RECENT.getSort();
   private static final Sort.Direction SORT = DESC;
 
   private Pageable pageable;
 
-  public PageRequest(int page, String order, String sort) {
+  public PageRequest(Integer page, String order, String sort) {
     this.pageable = toPageable(page, toOrderCondition(order), toSortDirection(sort));
   }
 
@@ -30,8 +30,8 @@ public class PageRequest {
     return (sort == null || sort.isBlank()) ? DESC : Sort.Direction.valueOf(sort);
   }
 
-  private Pageable toPageable(int page, String order, Sort.Direction sort) {
+  private Pageable toPageable(Integer page, String order, Sort.Direction sort) {
     return org.springframework.data.domain.PageRequest.of(
-        page != 0 ? page : PAGE, PAGE_SIZE, sort, order);
+        page != null ? page : PAGE, PAGE_SIZE, sort, order);
   }
 }

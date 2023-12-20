@@ -48,7 +48,7 @@ class ReviewRepositoryImplTest extends IntegrationTestSupport {
     // then
     assertThat(page.getTotalPages()).isEqualTo(2);
     assertThat(page.getTotalElements()).isEqualTo(list.size());
-    assertThat(page.getContent().get(0).getId()).isEqualTo(list.get(list.size()-1).getId());
+    assertThat(page.getContent().get(0).getId()).isEqualTo(list.get(list.size() - 1).getId());
   }
 
   private Review createReview(
@@ -62,6 +62,7 @@ class ReviewRepositoryImplTest extends IntegrationTestSupport {
     return Review.builder()
         .memberId(memberId)
         .productId(productId)
+        .productSize("260")
         .orderDetailNo(orderDetailNo)
         .description(description)
         .rating(rating)

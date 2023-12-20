@@ -22,6 +22,9 @@ public class ReviewRequest {
     @NotBlank(message = "리뷰내용은 필수입니다.")
     private String description;
 
+    @NotBlank(message = "상품 옵션은 필수 입니다.")
+    private String productSize;
+
     private String imgUrl;
 
     @NotBlank(message = "닉네임은 필수입니다.")
@@ -37,6 +40,7 @@ public class ReviewRequest {
       return ReviewFacadeRequest.ReviewCreateRequest.builder()
           .memberId(memberId)
           .productId(productId)
+          .productSize(productSize)
           .orderDetailNo(orderDetailNo)
           .description(description)
           .rating(rating)

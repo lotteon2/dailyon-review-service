@@ -14,6 +14,7 @@ public class ReviewFacadeRequest {
   public static class ReviewCreateRequest {
     private Long memberId;
     private Long productId;
+    private String productSize;
     private String orderDetailNo;
     private String description;
     private Float rating;
@@ -25,6 +26,7 @@ public class ReviewFacadeRequest {
       return ReviewServiceRequest.ReviewCreateRequest.builder()
           .memberId(memberId)
           .productId(productId)
+          .productSize(productSize)
           .orderDetailNo(orderDetailNo)
           .description(description)
           .rating(rating)

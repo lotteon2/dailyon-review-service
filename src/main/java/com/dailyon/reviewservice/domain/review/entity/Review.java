@@ -24,7 +24,7 @@ public class Review extends BaseEntity {
 
   @NotNull private Long memberId;
   @NotNull private Long productId;
-
+  @NotNull private String productSize;
   @NotNull private String orderDetailNo;
   @NotNull private String description;
   @NotNull private Float rating;
@@ -40,6 +40,7 @@ public class Review extends BaseEntity {
   private Review(
       Long memberId,
       Long productId,
+      String productSize,
       String orderDetailNo,
       String description,
       Float rating,
@@ -48,6 +49,7 @@ public class Review extends BaseEntity {
       String profileImgUrl) {
     this.memberId = memberId;
     this.productId = productId;
+    this.productSize = productSize;
     this.orderDetailNo = orderDetailNo;
     this.description = description;
     this.rating = rating;

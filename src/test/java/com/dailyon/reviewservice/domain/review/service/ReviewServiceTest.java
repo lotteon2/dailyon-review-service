@@ -35,6 +35,7 @@ class ReviewServiceTest extends IntegrationTestSupport {
             .nickname("닉네임")
             .orderDetailNo("orderDetailNo")
             .productId(1L)
+            .productSize("260")
             .profile("profile_url")
             .rating(2.5f)
             .build();
@@ -75,6 +76,7 @@ class ReviewServiceTest extends IntegrationTestSupport {
             .nickname("닉네임")
             .orderDetailNo("orderDetailNo")
             .productId(1L)
+            .productSize("260")
             .profile("profile_url")
             .rating(2.5f)
             .build();
@@ -121,6 +123,7 @@ class ReviewServiceTest extends IntegrationTestSupport {
     return Review.builder()
         .memberId(memberId)
         .productId(productId)
+        .productSize("260")
         .orderDetailNo(orderDetailNo)
         .description(description)
         .rating(rating)

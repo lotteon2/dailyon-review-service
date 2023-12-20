@@ -1,8 +1,6 @@
 package com.dailyon.reviewservice.domain.review.api;
 
 import com.dailyon.reviewservice.ControllerTestSupport;
-import com.dailyon.reviewservice.common.page.OrderCondition;
-import com.dailyon.reviewservice.common.page.PageRequest;
 import com.dailyon.reviewservice.domain.review.api.request.ReviewRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,6 +21,7 @@ class ReviewApiControllerTest extends ControllerTestSupport {
     Long memberId = 1L;
     Long productId = 1L;
     String orderDetailNo = "testOrderDetailNo";
+    String productSize = "260";
     String description = "testdes";
     String imgUrl = "testUrl";
     String nickname = "testNickname";
@@ -31,7 +30,14 @@ class ReviewApiControllerTest extends ControllerTestSupport {
 
     ReviewRequest.ReviewCreateRequest request =
         createRequest(
-            productId, orderDetailNo, description, imgUrl, nickname, rating, profileImgUrl);
+            productId,
+            orderDetailNo,
+            productSize,
+            description,
+            imgUrl,
+            nickname,
+            rating,
+            profileImgUrl);
     // when  // then
     mockMvc
         .perform(
@@ -50,6 +56,7 @@ class ReviewApiControllerTest extends ControllerTestSupport {
     Long productId = null;
     String orderDetailNo = "testOrderDetailNo";
     String description = "testdes";
+    String productSize = "260";
     String imgUrl = "testUrl";
     String nickname = "testNickname";
     Float rating = 1.5f;
@@ -57,7 +64,14 @@ class ReviewApiControllerTest extends ControllerTestSupport {
 
     ReviewRequest.ReviewCreateRequest request =
         createRequest(
-            productId, orderDetailNo, description, imgUrl, nickname, rating, profileImgUrl);
+            productId,
+            orderDetailNo,
+            description,
+            productSize,
+            imgUrl,
+            nickname,
+            rating,
+            profileImgUrl);
     // when  // then
     mockMvc
         .perform(
@@ -78,6 +92,7 @@ class ReviewApiControllerTest extends ControllerTestSupport {
     Long productId = 1L;
     String orderDetailNo = null;
     String description = "testdes";
+    String productSize = "260";
     String imgUrl = "testUrl";
     String nickname = "testNickname";
     Float rating = 1.5f;
@@ -85,7 +100,14 @@ class ReviewApiControllerTest extends ControllerTestSupport {
 
     ReviewRequest.ReviewCreateRequest request =
         createRequest(
-            productId, orderDetailNo, description, imgUrl, nickname, rating, profileImgUrl);
+            productId,
+            orderDetailNo,
+            description,
+            productSize,
+            imgUrl,
+            nickname,
+            rating,
+            profileImgUrl);
     // when  // then
     mockMvc
         .perform(
@@ -106,6 +128,7 @@ class ReviewApiControllerTest extends ControllerTestSupport {
     Long productId = 1L;
     String orderDetailNo = "testOrderDetailNo";
     String description = null;
+    String productSize = "260";
     String imgUrl = "testUrl";
     String nickname = "testNickname";
     Float rating = 1.5f;
@@ -113,7 +136,14 @@ class ReviewApiControllerTest extends ControllerTestSupport {
 
     ReviewRequest.ReviewCreateRequest request =
         createRequest(
-            productId, orderDetailNo, description, imgUrl, nickname, rating, profileImgUrl);
+            productId,
+            orderDetailNo,
+            description,
+            productSize,
+            imgUrl,
+            nickname,
+            rating,
+            profileImgUrl);
     // when  // then
     mockMvc
         .perform(
@@ -134,6 +164,7 @@ class ReviewApiControllerTest extends ControllerTestSupport {
     Long productId = 1L;
     String orderDetailNo = "testOrderDetailNo";
     String description = "testdes";
+    String productSize = "260";
     String imgUrl = "testUrl";
     String nickname = null;
     Float rating = 1.5f;
@@ -141,7 +172,14 @@ class ReviewApiControllerTest extends ControllerTestSupport {
 
     ReviewRequest.ReviewCreateRequest request =
         createRequest(
-            productId, orderDetailNo, description, imgUrl, nickname, rating, profileImgUrl);
+            productId,
+            orderDetailNo,
+            description,
+            productSize,
+            imgUrl,
+            nickname,
+            rating,
+            profileImgUrl);
     // when  // then
     mockMvc
         .perform(
@@ -162,6 +200,7 @@ class ReviewApiControllerTest extends ControllerTestSupport {
     Long productId = 1L;
     String orderDetailNo = "testOrderDetailNo";
     String description = "testdes";
+    String productSize = "260";
     String imgUrl = "testUrl";
     String nickname = "testNickname";
     Float rating = null;
@@ -169,7 +208,14 @@ class ReviewApiControllerTest extends ControllerTestSupport {
 
     ReviewRequest.ReviewCreateRequest request =
         createRequest(
-            productId, orderDetailNo, description, imgUrl, nickname, rating, profileImgUrl);
+            productId,
+            orderDetailNo,
+            description,
+            productSize,
+            imgUrl,
+            nickname,
+            rating,
+            profileImgUrl);
     // when  // then
     mockMvc
         .perform(
@@ -190,6 +236,7 @@ class ReviewApiControllerTest extends ControllerTestSupport {
     Long productId = 1L;
     String orderDetailNo = "testOrderDetailNo";
     String description = "testdes";
+    String productSize = "260";
     String imgUrl = "testUrl";
     String nickname = "testNickname";
     Float rating = 1.5f;
@@ -197,7 +244,14 @@ class ReviewApiControllerTest extends ControllerTestSupport {
 
     ReviewRequest.ReviewCreateRequest request =
         createRequest(
-            productId, orderDetailNo, description, imgUrl, nickname, rating, profileImgUrl);
+            productId,
+            orderDetailNo,
+            description,
+            productSize,
+            imgUrl,
+            nickname,
+            rating,
+            profileImgUrl);
     // when  // then
     mockMvc
         .perform(
@@ -230,12 +284,20 @@ class ReviewApiControllerTest extends ControllerTestSupport {
   private ReviewRequest.ReviewCreateRequest createRequest(
       Long productId,
       String orderDetailNo,
+      String productSize,
       String description,
       String imgUrl,
       String nickname,
       Float rating,
       String profileImgUrl) {
     return new ReviewRequest.ReviewCreateRequest(
-        productId, orderDetailNo, description, imgUrl, nickname, rating, profileImgUrl);
+        productId,
+        orderDetailNo,
+        productSize,
+        description,
+        imgUrl,
+        nickname,
+        rating,
+        profileImgUrl);
   }
 }

@@ -28,6 +28,6 @@ public class ReviewFacade {
   }
 
   public ReviewPageResponse getProductReviews(Pageable pageable, Long productId, Long memberId) {
-    return getProductReviews(pageable, productId, memberId);
+    return reviewService.getProductReviews(pageable, productId, memberId);
   }
 }

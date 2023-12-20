@@ -6,7 +6,9 @@ import com.dailyon.reviewservice.domain.review.facade.request.ReviewFacadeReques
 import com.dailyon.reviewservice.domain.review.kafka.event.ReviewEventProducer;
 import com.dailyon.reviewservice.domain.review.kafka.event.dto.ReviewDTO;
 import com.dailyon.reviewservice.domain.review.service.ReviewService;
+import com.dailyon.reviewservice.domain.review.service.response.ReviewPageResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,5 +25,9 @@ public class ReviewFacade {
     String preSignedUrl = awsS3Service.getPreSignedUrl(filePath);
     producer.reviewCreated(ReviewDTO.of(review, ratingAvg, 100));
     return preSignedUrl;
+  }
+
+  public ReviewPageResponse getProductReviews(Pageable pageable, Long productId, Long memberId) {
+    return getProductReviews(pageable, productId, memberId);
   }
 }

@@ -5,9 +5,16 @@ import com.dailyon.reviewservice.common.exception.DuplicatedException;
 import com.dailyon.reviewservice.domain.review.entity.Review;
 import com.dailyon.reviewservice.domain.review.repository.ReviewRepository;
 import com.dailyon.reviewservice.domain.review.service.request.ReviewServiceRequest.ReviewCreateRequest;
+import com.dailyon.reviewservice.domain.review.service.response.ReviewPageResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -77,5 +84,48 @@ class ReviewServiceTest extends IntegrationTestSupport {
     assertThatThrownBy(() -> reviewService.createReview(request))
         .isInstanceOf(DuplicatedException.class)
         .hasMessage(DuplicatedException.MESSAGE);
+  }
+
+  @DisplayName("상품 별 리뷰를 최신순으로 8개씩 조회한다. 내가 쓴 리뷰가 아닌 경우 isWrittenByMe 값은 false이다.")
+  @Test
+  void getReviewByProductId() {
+    // given
+    Long memberId = 1L;
+    Long productId = 1L;
+    List<Review> list = new ArrayList<>();
+    for (int i = 0; i < 10; i++) {
+      list.add(createReview(memberId, productId, "o1" + i, "d1", 1.0f, "n1", "p1"));
+    }
+    list.add(createReview(2L, productId, "o12d", "d1", 1.0f, "n1", "p1"));
+    reviewRepository.saveAll(list);
+    Pageable pageable = PageRequest.of(0, 8, Sort.Direction.valueOf("DESC"), "id");
+
+    // when
+    ReviewPageResponse productReviews =
+        reviewService.getProductReviews(pageable, productId, memberId);
+    // then
+    assertThat(productReviews.getTotalPages()).isEqualTo(2);
+    assertThat(productReviews.getTotalElements()).isEqualTo(list.size());
+    assertThat(productReviews.getReviews().get(0).isWrittenByMe()).isFalse();
+    assertThat(productReviews.getReviews().get(1).isWrittenByMe()).isTrue();
+  }
+
+  private Review createReview(
+      Long memberId,
+      Long productId,
+      String orderDetailNo,
+      String description,
+      Float rating,
+      String nickname,
+      String profileImgUrl) {
+    return Review.builder()
+        .memberId(memberId)
+        .productId(productId)
+        .orderDetailNo(orderDetailNo)
+        .description(description)
+        .rating(rating)
+        .nickname(nickname)
+        .profileImgUrl(profileImgUrl)
+        .build();
   }
 }

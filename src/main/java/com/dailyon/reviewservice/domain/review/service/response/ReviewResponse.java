@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class ReviewResponse {
   private Long id;
   private Long productId;
+  private String productSize;
   private String description;
   private Float rating;
   private String imgUrl;
@@ -21,6 +22,7 @@ public class ReviewResponse {
   private ReviewResponse(
       Long id,
       Long productId,
+      String productSize,
       String description,
       Float rating,
       String imgUrl,
@@ -29,6 +31,7 @@ public class ReviewResponse {
       boolean isWrittenByMe) {
     this.id = id;
     this.productId = productId;
+    this.productSize = productSize;
     this.description = description;
     this.rating = rating;
     this.imgUrl = imgUrl;
@@ -41,6 +44,7 @@ public class ReviewResponse {
     return ReviewResponse.builder()
         .id(review.getId())
         .productId(review.getProductId())
+        .productSize(review.getProductSize())
         .description(review.getDescription())
         .rating(review.getRating())
         .imgUrl(review.getImgUrl())

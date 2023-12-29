@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -40,14 +41,14 @@ class ReviewServiceTest extends IntegrationTestSupport {
             .rating(2.5f)
             .build();
     // when
-    Review review = reviewService.createReview(request);
+    String uuid = UUID.randomUUID().toString();
+    Review review = reviewService.createReview(request, uuid);
     // then
     assertThat(review).isNotNull();
     assertThat(review)
         .extracting(
             "memberId",
             "description",
-            "imgUrl",
             "nickname",
             "orderDetailNo",
             "productId",
@@ -56,7 +57,6 @@ class ReviewServiceTest extends IntegrationTestSupport {
         .containsExactlyInAnyOrder(
             request.getMemberId(),
             request.getDescription(),
-            request.getImgUrl(),
             request.getNickname(),
             request.getOrderDetailNo(),
             request.getProductId(),
@@ -81,9 +81,10 @@ class ReviewServiceTest extends IntegrationTestSupport {
             .rating(2.5f)
             .build();
 
-    Review review = reviewService.createReview(request);
+    String uuid = UUID.randomUUID().toString();
+    Review review = reviewService.createReview(request, uuid);
     // when // then
-    assertThatThrownBy(() -> reviewService.createReview(request))
+    assertThatThrownBy(() -> reviewService.createReview(request, uuid))
         .isInstanceOf(DuplicatedException.class)
         .hasMessage(DuplicatedException.MESSAGE);
   }

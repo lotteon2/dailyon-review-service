@@ -23,7 +23,7 @@ public class ReviewServiceRequest {
     private String nickname;
     private String profile;
 
-    public Review toEntity() {
+    public Review toEntity(String filePath) {
       return Review.builder()
           .memberId(memberId)
           .productId(productId)
@@ -31,7 +31,7 @@ public class ReviewServiceRequest {
           .orderDetailNo(orderDetailNo)
           .description(description)
           .rating(rating)
-          .imgUrl(imgUrl)
+          .imgUrl(filePath)
           .nickname(nickname)
           .profileImgUrl(profile)
           .build();

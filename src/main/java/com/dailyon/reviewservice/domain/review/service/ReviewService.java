@@ -19,8 +19,8 @@ public class ReviewService {
   private final ReviewReader reviewReader;
 
   @Transactional
-  public Review createReview(ReviewCreateRequest request) {
-    Review review = request.toEntity();
+  public Review createReview(ReviewCreateRequest request, String filePath) {
+    Review review = request.toEntity(filePath);
     Review savedReview = reviewAppender.append(review);
     return savedReview;
   }

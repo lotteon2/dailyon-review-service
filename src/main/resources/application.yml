@@ -10,6 +10,8 @@ spring:
   cloud:
     config:
       name: review-service
+  jackson:
+    time-zone: Asia/Seoul
 management:
   endpoints:
     web:

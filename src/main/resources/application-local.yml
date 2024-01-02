@@ -19,16 +19,24 @@ spring:
   datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:review-service;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false;MODE=MySQL
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/review-service
+#    username: ssafy
+#    password: ssafy
   jpa:
     hibernate:
       ddl-auto: create
     properties:
       hibernate:
         format_sql: true
+    generate-ddl: true
+    show-sql: true
+    defer-datasource-initialization: true
 
   cloud:
     discovery:
-      enabled: false
+      enabled: true
 
   kafka:
     producer:
@@ -56,13 +64,3 @@ eureka:
       defaultZone: http://127.0.0.1:8761/eureka
   instance:
     instance-id: ${spring.application.name}:${server.port}
-
-logging:
-  level:
-    org:
-      hibernate:
-        SQL: DEBUG
-      springframework:
-        jdbc:
-          core:
-            JdbcTemplate: DEBUG

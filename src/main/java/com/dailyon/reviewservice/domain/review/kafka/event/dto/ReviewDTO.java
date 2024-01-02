@@ -20,6 +20,7 @@ public class ReviewDTO {
   public static ReviewDTO of(Review review, double ratingAvg, int point) {
     return ReviewDTO.builder()
         .orderDetailNo(review.getOrderDetailNo())
+        .productId(review.getProductId())
         .memberId(review.getMemberId())
         .point(point)
         .ratingAvg(ratingAvg)

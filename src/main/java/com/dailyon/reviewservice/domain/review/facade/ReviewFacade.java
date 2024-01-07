@@ -19,10 +19,14 @@ public class ReviewFacade {
   private final ReviewEventProducer producer;
 
   public String createReview(ReviewCreateRequest request) {
-    String filePath = awsS3Service.createFilePath(request.getImgUrl());
-    Review review = reviewService.createReview(request.toServiceRequest(), filePath);
+    String filePath = null;
+    String preSignedUrl = null;
+    if(request.getImgUrl() != null) {
+      filePath = awsS3Service.createFilePath(request.getImgUrl());
+      preSignedUrl = awsS3Service.getPreSignedUrl(filePath);
+    }
+    Review review = reviewService.createReview(request.toServiceRequest(filePath));
     Double ratingAvg = reviewService.getRatingAvg(review.getProductId());
-    String preSignedUrl = awsS3Service.getPreSignedUrl(filePath);
     producer.reviewCreated(ReviewDTO.of(review, ratingAvg, 100));
     return preSignedUrl;
   }

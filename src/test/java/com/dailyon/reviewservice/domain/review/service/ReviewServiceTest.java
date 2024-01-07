@@ -41,8 +41,7 @@ class ReviewServiceTest extends IntegrationTestSupport {
             .rating(2.5f)
             .build();
     // when
-    String uuid = UUID.randomUUID().toString();
-    Review review = reviewService.createReview(request, uuid);
+    Review review = reviewService.createReview(request);
     // then
     assertThat(review).isNotNull();
     assertThat(review)
@@ -81,10 +80,9 @@ class ReviewServiceTest extends IntegrationTestSupport {
             .rating(2.5f)
             .build();
 
-    String uuid = UUID.randomUUID().toString();
-    Review review = reviewService.createReview(request, uuid);
+    Review review = reviewService.createReview(request);
     // when // then
-    assertThatThrownBy(() -> reviewService.createReview(request, uuid))
+    assertThatThrownBy(() -> reviewService.createReview(request))
         .isInstanceOf(DuplicatedException.class)
         .hasMessage(DuplicatedException.MESSAGE);
   }

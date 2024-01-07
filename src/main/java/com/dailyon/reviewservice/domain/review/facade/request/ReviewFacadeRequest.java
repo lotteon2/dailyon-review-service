@@ -22,7 +22,7 @@ public class ReviewFacadeRequest {
     private String nickname;
     private String profileImgUrl;
 
-    public ReviewServiceRequest.ReviewCreateRequest toServiceRequest() {
+    public ReviewServiceRequest.ReviewCreateRequest toServiceRequest(String filePath) {
       return ReviewServiceRequest.ReviewCreateRequest.builder()
           .memberId(memberId)
           .productId(productId)
@@ -30,7 +30,7 @@ public class ReviewFacadeRequest {
           .orderDetailNo(orderDetailNo)
           .description(description)
           .rating(rating)
-          .imgUrl(imgUrl)
+          .imgUrl(filePath)
           .nickname(nickname)
           .profile(profileImgUrl)
           .build();
